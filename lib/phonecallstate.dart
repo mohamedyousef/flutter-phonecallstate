@@ -5,17 +5,17 @@ import 'package:flutter/services.dart';
 
 
 
-typedef void ErrorHandler(String message);
+typedef void ErrorHandler(String? message);
 
 class Phonecallstate {
   static const MethodChannel _channel =
       const MethodChannel('com.plusdt.phonecallstate');
 
-  VoidCallback incomingHandler;
-  VoidCallback dialingHandler;
-  VoidCallback connectedHandler;
-  VoidCallback disconnectedHandler;
-  ErrorHandler errorHandler;
+  VoidCallback? incomingHandler;
+  VoidCallback? dialingHandler;
+  VoidCallback? connectedHandler;
+  VoidCallback? disconnectedHandler;
+  ErrorHandler? errorHandler;
 
 
   Phonecallstate(){
@@ -48,30 +48,30 @@ class Phonecallstate {
       case "phone.incoming":
         //print("incoming");
         if (incomingHandler != null) {
-          incomingHandler();
+          incomingHandler!();
         }
         break;
       case "phone.dialing":
         //print("dialing");
         if (dialingHandler != null) {
-          dialingHandler();
+          dialingHandler!();
         }
         break;
       case "phone.connected":
         //print("connected");
         if (connectedHandler != null) {
-          connectedHandler();
+          connectedHandler!();
         }
         break;
       case "phone.disconnected":
         //print("disconnected");
         if (disconnectedHandler != null) {
-          disconnectedHandler();
+          disconnectedHandler!();
         }
         break;
       case "phone.onError":
         if (errorHandler != null) {
-          errorHandler(call.arguments);
+          errorHandler!(call.arguments);
         }
         break;
       default:
